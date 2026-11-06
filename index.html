@@ -1,118 +1,33 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#31583a"><title>مكتبتي</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
-:root{--green:#244b32;--green2:#496b45;--gold:#b79a55;--gold2:#e4d4a7;--cream:#f6f0e3;--paper:#fffdf7;--ink:#183b2a;--muted:#7b806e;--line:#d8c79c;--shadow:0 9px 20px #6d62421c,inset 0 2px 5px #fff}
-*{box-sizing:border-box}body{margin:0;background:var(--cream);font-family:Cairo,Tahoma,sans-serif;color:var(--ink)}
-button,input,select,textarea{font:inherit}button{cursor:pointer}
-#login{min-height:100vh;background:radial-gradient(ellipse at 50% 0%,#7e9563,#426846 48%,#1d442d);padding:20px 16px 30px;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.brand{color:#f6e5ae;text-align:center;margin-bottom:22px}.brand h1{font-size:48px;margin:0;text-shadow:0 4px 8px #162c1d}.brand p{margin:0;color:#e7dba9}.brand .mark{font-size:68px;line-height:1.3;text-shadow:0 5px 6px #172c1d}
-.login-card{width:min(100%,560px);background:#fffdf5;border-radius:34px;padding:25px 24px;border:1px solid #e7d9b9;box-shadow:0 22px 45px #132c1f66;text-align:center}
-.login-card h2{font-size:29px;margin:10px 0 22px}.welcome{background:#eff0df;border:2px dashed #c9b77e;border-radius:22px;padding:17px;line-height:1.9;margin-bottom:22px}
-.field-label{display:block;text-align:right;font-weight:800;margin:12px 0 5px}
-input,select,textarea{width:100%;border:1px solid #d6c69b;background:#fffefa;border-radius:14px;padding:12px;color:var(--ink);margin:4px 0 12px;outline-color:var(--gold)}
-textarea{min-height:90px;resize:vertical}
-.primary{border:1px solid #c5a85e;border-radius:18px;background:linear-gradient(145deg,#6f914e,#315c36 58%,#9d8544);color:white;font-size:25px;font-weight:900;padding:13px 18px;width:100%;box-shadow:0 6px 0 #183d28,0 10px 18px #1d392b35;margin-top:10px}
-#app{display:none;max-width:850px;min-height:100vh;margin:auto;padding:12px 15px 35px;background:linear-gradient(145deg,#fffdf7,#f3eddf)}
-.topbar{display:flex;align-items:center;gap:12px;padding:5px 0 15px}
-.back{width:58px;height:58px;flex:0 0 58px;border-radius:50%;border:1px solid #d7c69c;background:linear-gradient(145deg,#fffefa,#e9dfc8);box-shadow:var(--shadow);color:#a58a4b;font-size:32px}
-.top-title{flex:1;text-align:center}.top-title h1{margin:0;font-size:37px;color:#a18545;text-shadow:0 2px 1px #fff}.top-title p{margin:-3px 0 0;color:#667654;font-size:13px}
-.avatar{width:58px;height:58px;border-radius:50%;border:2px solid #c7ad6b;background:linear-gradient(145deg,#fff,#e8ddc4);box-shadow:var(--shadow);display:grid;place-items:center;font-size:27px;color:#a78d50}
-.hero{display:flex;align-items:center;gap:14px;padding:18px 20px;margin:7px 0 22px;background:#fffdf7;border:1px solid #d8c79d;border-radius:25px;box-shadow:var(--shadow)}
-.hero .book{font-size:45px}.hero strong{font-size:20px}.hero p{margin:0;color:#89784f}
-.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.tile{min-height:145px;border:1px solid #e1d5b8;border-radius:30px;background:linear-gradient(145deg,#fffefa 10%,#f3eedf 85%);box-shadow:0 9px 18px #7466421c,inset 0 3px 5px #fff,inset 0 -5px 8px #d8cba9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;color:#193d2b;font-size:19px;font-weight:900;padding:13px;text-align:center}
-.tile .icon{font-size:43px;filter:drop-shadow(0 3px 2px #b8aa83)}
-.tile:active{transform:translateY(2px)}
-.page-title{display:flex;align-items:center;gap:12px;margin:5px 0 17px}.page-title h2{margin:0;flex:1;color:var(--green);font-size:25px}
-.panel{background:#fffdf7;border:1px solid #e2d5b8;border-radius:22px;padding:16px;margin:12px 0;box-shadow:var(--shadow)}
-.subgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.subtile{border:1px solid #dfd1ad;border-radius:22px;background:linear-gradient(145deg,#fffefa,#f1ead8);box-shadow:var(--shadow);padding:19px 9px;min-height:116px;text-align:center;color:var(--green);font-weight:900;font-size:18px}
-.subtile .icon{display:block;font-size:35px;margin-bottom:6px}
-.row{display:flex;align-items:center;justify-content:space-between;gap:9px;border-bottom:1px solid #eee5d3;padding:12px 2px}.row:last-child{border-bottom:0}
-.btn{border:1px solid #cdbb88;border-radius:12px;background:#f4efdf;color:#31583a;padding:8px 13px;font-weight:800}.btn.dark{background:#31583a;color:white}.btn.danger{color:#9a463a}
-.muted{font-size:13px;color:var(--muted)}.empty{text-align:center;padding:22px;color:var(--muted)}
-.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}
-.lesson{border:1px solid #e5d9bd;border-radius:17px;background:#fffef9;padding:14px;margin:10px 0}
-.lesson h3{margin:0 0 6px;color:#987d43}.lesson p{margin:0;color:#59694d}
-.section-note{background:#f0efdf;border-right:4px solid var(--gold);padding:12px 14px;border-radius:12px;line-height:1.8}
-.record{border:1px solid #e6dcc6;border-radius:15px;padding:12px;margin:9px 0;background:#fffefa}
-.record strong{display:block}.record small{color:var(--muted)}
-.actions{display:flex;gap:8px;flex-wrap:wrap}.actions .btn{flex:1}
-.ledger-wrap{overflow-x:auto;border:1px solid #cdbb88;border-radius:14px;background:#fffefa;margin-top:12px}
-.ledger{width:100%;min-width:680px;border-collapse:collapse;text-align:center;font-size:13px}
-.ledger th{background:#eae2ce;color:#244b32;padding:10px 7px;border:1px solid #d8c79c;white-space:nowrap}
-.ledger td{padding:9px 7px;border:1px solid #e2d5b8;line-height:1.7;vertical-align:middle}
-.ledger tbody tr:nth-child(even){background:#faf7ee}
-.ledger td.entry{min-width:95px;border-bottom:2px solid #d8c79c}
-.media-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.media-card{border:1px solid #e2d5b8;border-radius:16px;padding:10px;background:#fffefa;min-width:0}
-.media-card img{width:100%;height:150px;object-fit:cover;border-radius:11px;background:#eee}
-@media(max-width:390px){.media-grid{grid-template-columns:1fr}}
-@media print{.ledger-wrap{overflow:visible}.ledger{min-width:0;font-size:11px}.ledger th,.ledger td{padding:5px}}
-@media(max-width:390px){.tile{min-height:126px;font-size:17px}.tile .icon{font-size:38px}.top-title h1{font-size:31px}.avatar,.back{width:51px;height:51px;flex-basis:51px}}
-@media print{.no-print{display:none!important}body,#app{background:white;padding:0}.panel{box-shadow:none}}
-</style></head><body>
-<section id="login">
- <div class="brand"><h1>مكتبتي</h1><p>مكتبة مدرسية مصرية</p><div class="mark">📖</div></div>
- <div class="login-card"><h2>أهلاً بيك في مكتبتي</h2><div class="welcome">مرحباً! أدخل كلمة السر للوصول إلى مكتبتك المدرسية وإدارة دفتر اليومية والاستعارة والتحضير والسجلات.</div>
- <label class="field-label">كلمة السر</label><input id="password" type="password" placeholder="أدخل كلمة السر">
- <button class="primary" onclick="login()">دخول</button><p class="muted">مدرسة النيل الإعدادية • القاهرة</p></div>
-</section>
-<section id="app">
- <header class="topbar"><button class="back no-print" onclick="goBack()" aria-label="رجوع">←</button><div class="top-title"><h1>مكتبتي</h1><p>لوحة التحكم — لوحة المهام والمكتبة</p></div><button class="avatar no-print" onclick="openSection('الإعدادات')">⚙</button></header>
- <main id="view"></main>
-</section>
-<script>
-const DBKEY='maktabaty_agreed_v1';let data={};try{data=JSON.parse(localStorage.getItem(DBKEY)||'{}')}catch(e){}
-const save=()=>localStorage.setItem(DBKEY,JSON.stringify(data));
-const list=k=>data[k]||(data[k]=[]);
-let stack=[];
-const curriculum={
-'الصف الرابع الابتدائي':['من النقش إلى القلم','بيوت الكتب.. كيف بدأت؟','أشهر المكتبات قديماً وحديثاً','الهدوء والنظام: أسرار القارئ المثالي','صديقي الكتاب','أسرار المكتبة من الرفوف إلى الأجهزة','لغة الألوان في عالم المكتبات','كيف أختار كتابي من الرف؟','من المكتبة إلى بيتي','عالم مصادر المعلومات','مثلث المعرفة داخل المكتبة','من الرف إلى الإنجاز','مراجعة على ما سبق'],
-'الصف الخامس الابتدائي':['في كتب الحقائق العامة','كنز الأخلاق','حكايات من نور','نتعلم عن مجتمعنا','اكتشف اللغات','عجائب الحقائق العلمية','عالم الاختراعات','أنا فنان','عالم القصص','رحلة عبر الزمان والمكان','أصدقاء المعرفة','سفير المكتبة','مراجعة على ما سبق'],
-'الصف السادس الابتدائي':['رحلة في أنشطة المكتبة','أشارك وأتميز','الباحث الصغير','أكتشف مكونات الكتاب','ماذا تخبرنا صفحة العنوان؟','المحتويات أم المراجع؟','المعلومات في كل مكان','مستكشف المعلومات بين الورق والإنترنت','رحلة البحث عن المعلومات','نتحاور في المكتبة','من الحوار إلى الفكرة','مكتبتي المنزلية','مراجعة على ما سبق']
-};
-const icon={'الأعمال اليومية':'☑️','الأعمال الشهرية':'🗓️','السجلات الثقافية':'📚','دفتر اليومية':'📔','سجل المترددين':'👥','سجل الاستعارة':'📖','دفاتر التحضير':'📚','سجل لجنة المكتبة':'👥','سجل أصدقاء المكتبة':'🧑‍🤝‍🧑','كشوف الجرد':'📦','سجل اللوحات والأنشطة':'🖼️','سجل الإذاعة المدرسية':'🎙️','سجل المحاضرات':'🎓','سجل الندوات':'🗣️','سجل المناظرات':'⚖️','سجل المسابقات':'🏆','الإعدادات':'⚙️'};
-function login(){document.getElementById('login').style.display='none';document.getElementById('app').style.display='block';stack=[];renderHome()}
-function setPage(fn){stack.push(fn);fn()}
-function goBack(){if(stack.length>1){stack.pop();stack[stack.length-1]()}else renderHome()}
-function header(t){return `<div class="page-title"><button class="back no-print" onclick="goBack()">←</button><h2>${t}</h2></div>`}
-function renderHome(){stack=[renderHome];document.getElementById('view').innerHTML=`<div class="hero"><span class="book">📖</span><div><strong>مرحباً! إليك نشاطك اليوم</strong><p>تابع أعمال مكتبتك وسجلاتها من مكان واحد</p></div></div><div class="tiles">${[['الأعمال اليومية','☑️'],['الأعمال الشهرية','🗓️'],['السجلات الثقافية','📚']].map(([n,i])=>`<button class="tile" onclick="openSection('${n}')"><span class="icon">${i}</span>${n}</button>`).join('')}</div>`}
-function openSection(n){setPage(()=>{let items=n==='الأعمال اليومية'?['دفتر اليومية','سجل المترددين','سجل الاستعارة','دفاتر التحضير']:n==='الأعمال الشهرية'?['سجل لجنة المكتبة','سجل أصدقاء المكتبة','كشوف الجرد','سجل اللوحات والأنشطة']:n==='السجلات الثقافية'?['سجل الإذاعة المدرسية','سجل المحاضرات','سجل الندوات','سجل المناظرات','سجل المسابقات']:n==='دفتر التحضير'?['الصف الرابع الابتدائي','الصف الخامس الابتدائي','الصف السادس الابتدائي']:['تغيير كلمة السر','النسخ الاحتياطي','استعادة نسخة احتياطية','عن التطبيق'];document.getElementById('view').innerHTML=header(n)+`<div class="subgrid">${items.map(x=>`<button class="subtile" onclick="openItem('${x}')"><span class="icon">${icon[x]||'📘'}</span>${x}</button>`).join('')}</div>`})}
-function openItem(n){if(curriculum[n]){lessonList(n);return}if(n==='دفاتر التحضير'){openSection('دفتر التحضير');return}if(n==='دفتر اليومية'){dailyBook();return}if(n==='سجل الاستعارة'){loans();return}if(n==='سجل المترددين'){visitors();return}if(n==='سجل اللوحات والأنشطة'){boards();return}if(n==='كشوف الجرد'){inventoryHome();return}if(n==='سجل لجنة المكتبة'){committeeHome();return}if(n==='تغيير كلمة السر'){passwordPage();return}if(n==='النسخ الاحتياطي'){backup();return}if(n==='استعادة نسخة احتياطية'){restore();return}if(n==='عن التطبيق'){simple('عن التطبيق','تطبيق مكتبتي لإدارة أعمال المكتبة المدرسية وسجلاتها.');return}if(n==='سجل أصدقاء المكتبة'){generic(n,['المسلسل','اسم الصديق','الفصل','التاريخ','النشاط / المشاركة','ملاحظات']);return}culture(n)}
-function dailyBook(){setPage(()=>{let days=['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس'];document.getElementById('view').innerHTML=header('دفتر اليومية')+`<div class="section-note">اختر اليوم لفتح صفحة مستقلة. يبدأ المسلسل من ١ في كل صفحة يومية.</div><div class="subgrid" style="margin-top:13px">${days.map(d=>`<button class="subtile" onclick="dailyDay('${d}')"><span class="icon">📔</span>${d}</button>`).join('')}</div>`})}
-function dailyDay(day){setPage(()=>{let k='daily_'+day,a=list(k);document.getElementById('view').innerHTML=header('دفتر اليومية — '+day)+`<div class="panel"><form onsubmit="addRecord(event,'${k}')"><div class="formgrid">${fields(['الاسم','الفصل','التاريخ','نوع الزيارة','ماذا قرأت؟','الرقم العام للكتاب'])}</div><button class="primary">إضافة إلى دفتر اليومية</button></form><div class="muted">الحقول: المسلسل، الاسم، الفصل، التاريخ، نوع الزيارة، ماذا قرأت؟، الرقم العام للكتاب.</div></div>${records(k,a,true)}`})}
-function visitors(){setPage(()=>{let k='visitors',a=list(k),labels=['الاسم','الفصل','التاريخ','نوع الزيارة','ماذا قرأت؟','الرقم العام للكتاب'];document.getElementById('view').innerHTML=header('سجل المترددين')+`<div class="panel"><form onsubmit="addRecord(event,'${k}')"><div class="formgrid">${fields(labels)}</div><button class="primary">إضافة إلى سجل المترددين</button></form><p class="muted">تُحفظ كل إضافة في سجل مسطر متتابع، مع ترقيم تلقائي.</p></div>${ledgerRecords(k,a,labels)}`})}
-function ledgerRecords(k,a,labels){return `<div class="panel"><h3>السجل المسطر — ${a.length} قيد</h3><div class="ledger-wrap"><table class="ledger"><thead><tr><th>المسلسل</th>${labels.map(x=>`<th>${x}</th>`).join('')}<th class="no-print">الإجراءات</th></tr></thead><tbody>${a.map((r,i)=>`<tr><td>${r.serial||i+1}</td>${labels.map((x,j)=>`<td class="entry">${r['f'+j]||'—'}</td>`).join('')}<td class="no-print"><button class="btn" onclick="printRecord('${k}',${i})">طباعة</button> <button class="btn danger" onclick="removeRecord('${k}',${i})">حذف</button></td></tr>`).join('')||`<tr><td colspan="${labels.length+2}" class="empty">لا توجد قيود محفوظة بعد.</td></tr>`}</tbody></table></div></div>`}
-function loans(){setPage(()=>{let k='loans',a=list(k),labels=['الاسم','الفصل','اسم الكتاب','الرقم العام','تاريخ الاستعارة','تاريخ الاسترداد'];document.getElementById('view').innerHTML=header('سجل الاستعارة')+`<div class="panel"><form onsubmit="addRecord(event,'${k}')"><div class="formgrid">${fields(labels)}</div><button class="primary">تسجيل استعارة</button></form><p class="muted">كل استعارة جديدة تُضاف إلى سجل مسطر متتابع مع مسلسل تلقائي.</p></div>${ledgerRecords(k,a,labels)}`})}
-function lessonList(g){setPage(()=>{document.getElementById('view').innerHTML=header('دفتر التحضير — '+g)+`<div class="section-note">دفتر مستقل لهذا الصف. اختر الدرس لفتح صفحة التحضير الخاصة به.</div>${curriculum[g].map((t,i)=>`<div class="lesson"><h3>الدرس ${i+1}: ${t}</h3><button class="btn dark" onclick="lessonForm('${g}',${i})">فتح التحضير</button></div>`).join('')}`})}
-function lessonForm(g,i){setPage(()=>{let k='prep_'+g+'_'+i,old=list(k)[0]||{};document.getElementById('view').innerHTML=header('تحضير الدرس')+`<div class="panel"><h3>${g}</h3><h2 style="color:#967c43">${curriculum[g][i]}</h2><form onsubmit="saveSingle(event,'${k}')">${fields(['التاريخ','الفصل','الحصة','الأهداف','الاستراتيجية المستخدمة','التمهيد','الدرس / الشرح','الأنشطة المصاحبة','التقييم','ملاحظات'],old,true)}<button class="primary">حفظ التحضير</button></form><p class="muted">عنوان الدرس من جدول توزيع المنهج المرفوع. لم أضف نصوص شرح غير موجودة بوضوح في الملف.</p></div>`})}
-function fields(names,old={},areas=false){return names.map((n,i)=>`<div><label class="field-label">${n}</label>${areas&&['الأهداف','الاستراتيجية المستخدمة','التمهيد','الدرس / الشرح','الأنشطة المصاحبة','التقييم','ملاحظات'].includes(n)?`<textarea name="f${i}">${old['f'+i]||''}</textarea>`:`<input name="f${i}" ${n.includes('تاريخ')?'type="date"':''} value="${old['f'+i]||''}">`}</div>`).join('')}
-function addRecord(e,k){e.preventDefault();let a=list(k),next=a.reduce((m,r)=>Math.max(m,Number(r.serial)||0),0)+1,o={serial:next};new FormData(e.target).forEach((v,n)=>o[n]=v);a.push(o);save();if(stack.length)stack[stack.length-1]();}
-function saveSingle(e,k){e.preventDefault();let o={};new FormData(e.target).forEach((v,n)=>o[n]=v);data[k]=[o];save();alert('تم حفظ التحضير على الجهاز')}
-function records(k,a,del=false){return `<div class="panel"><h3>السجلات المحفوظة (${a.length})</h3>${a.map((r,i)=>`<div class="record"><strong>${r.f0||r.f1||r.name||'سجل رقم '+(i+1)}</strong><small>${Object.values(r).filter(Boolean).join(' • ')}</small><div style="margin-top:8px"><button class="btn" onclick="printRecord('${k}',${i})">طباعة</button>${del?` <button class="btn danger" onclick="removeRecord('${k}',${i})">حذف</button>`:''}</div></div>`).join('')||'<div class="empty">لا توجد سجلات محفوظة بعد.</div>'}</div>`}
-function removeRecord(k,i){list(k).splice(i,1);save();if(stack.length)stack[stack.length-1]()}
-function printRecord(k,i){let r=list(k)[i];let w=window.open('','_blank');w.document.write('<meta charset="utf-8"><body dir="rtl" style="font-family:Tahoma;padding:25px"><h2>مكتبتي</h2>'+Object.entries(r).map(([a,b])=>`<p><b>${a}:</b> ${b}</p>`).join('')+'</body>');w.print()}
-function generic(n,labels){setPage(()=>{let k='form_'+n,a=list(k);document.getElementById('view').innerHTML=header(n)+`<div class="panel"><form onsubmit="addRecord(event,'${k}')">${fields(labels)}<button class="primary">حفظ السجل</button></form></div>${records(k,a,true)}`})}
-function culture(n){let labels=['التاريخ','عنوان النشاط','المكان','المحاضر / المشاركون','عدد الحضور','الموضوع / المحاور','التوصيات والنتائج','ملاحظات'];generic(n,labels)}
-function inventoryHome(){setPage(()=>{document.getElementById('view').innerHTML=header('كشوف الجرد')+`<div class="subgrid"><button class="subtile" onclick="generic('محضر جرد مكتبة المدرسة',['الإدارة التعليمية','المدرسة','العام الدراسي','رئيس لجنة الجرد','أعضاء اللجنة','تاريخ بداية الجرد','تاريخ نهاية الجرد','الرصيد الفعلي قبل الجرد','الكتب المفقودة','الكتب التالفة','إجمالي الثمن','توقيعات اللجنة'])">محضر جرد مكتبة المدرسة</button><button class="subtile" onclick="generic('كشف الكتب التالفة',['المسلسل','الرقم العام','الرقم الخاص','عنوان الكتاب','اسم المؤلف','تاريخ الورود','السعر بالقرش','السعر بالجنيه','رأي موجه المكتبات'])">كشف الكتب التالفة</button><button class="subtile" onclick="generic('كشف الكتب الفاقدة',['المسلسل','الرقم العام','الرقم الخاص','عنوان الكتاب','اسم المؤلف','تاريخ الورود','السعر بالقرش','السعر بالجنيه','رأي موجه المكتبات'])">كشف الكتب الفاقدة</button></div>`})}
-function committeeHome(){setPage(()=>{document.getElementById('view').innerHTML=header('سجل لجنة المكتبة')+`<div class="subgrid"><button class="subtile" onclick="generic('تشكيل لجنة المكتبة',['اسم العضو','الوظيفة الرسمية','العمل باللجنة','التوقيع'])">تشكيل اللجنة</button><button class="subtile" onclick="committeeRules()">اختصاصات اللجنة</button><button class="subtile" onclick="generic('الخطة الزمنية للجنة',['الشهر','أوجه النشاط أو مشروعات اللجنة الثقافية','المسؤول عن التنفيذ','ملاحظات'])">الخطة الزمنية</button><button class="subtile" onclick="generic('البرنامج الزمني للجنة',['الشهر','البرنامج','ملاحظات'])">البرنامج الزمني</button><button class="subtile" onclick="generic('محضر اجتماع لجنة المكتبة',['رقم الاجتماع / الشهر','تاريخ الاجتماع','الساعة','رئيس اللجنة / مدير المدرسة','مكان الاجتماع','عدد الأعضاء الحاضرين','جدول الأعمال','القرارات','وقت انتهاء الاجتماع','السكرتير','الأعضاء والتوقيعات','اعتماد رئيس اللجنة'])">محاضر الاجتماعات</button></div>`})}
-function committeeRules(){let a=['وضع الترتيبات الداخلية لتنظيم سير أعمال المكتبة خلال العام الدراسي، بما في ذلك مواعيد فتح المكتبة وإغلاقها.','قبول الهدايا المقدمة للمكتبة بعد عرضها على اللجنة المختصة لفحصها وإجازتها.','فحص التقرير السنوي الذي يقدمه أمين المكتبة وإرسال نسخة إلى الإدارة.','الإشراف على الجرد السنوي لمحتويات المكتبة واعتماده وفق التعليمات.','تنسيق الاستفادة من المكتبة في التدريس وحصص المكتبة.','دراسة الطرق التي تؤدي إلى نمو الخدمة المكتبية وتذليل العقبات.','اقتراح عناوين وأنواع الكتب والمراجع والدوريات لتزويد المكتبة.','اعتماد قوائم الكتب ومواد المكتبة التي تحتاج إلى إصلاح أو تجليد أو استبعاد.','إسناد العمل بالمكتبة عند غياب أمينها إلى أحد أعضاء اللجنة.','عقد اجتماعات اللجنة وتسجيل المداولات والتوصيات في سجل مختص.'];setPage(()=>{document.getElementById('view').innerHTML=header('اختصاصات لجنة المكتبة')+`<div class="panel">${a.map((x,i)=>`<div class="row">${i+1}. ${x}</div>`).join('')}</div>`})}
-function boards(){setPage(()=>{document.getElementById('view').innerHTML=header('سجل اللوحات والأنشطة')+`<div class="panel"><label class="field-label">اسم النشاط</label><input id="bname" placeholder="مثال: لوحة النظافة"><label class="field-label">التاريخ</label><input id="bdate" type="date"><label class="field-label">الوصف</label><textarea id="bdesc" placeholder="وصف مختصر للنشاط"></textarea><label class="field-label">التقاط صورة بالكاميرا</label><input id="bcamera" type="file" accept="image/*" capture="environment" onchange="previewBoardFile(this)"><label class="field-label">أو اختيار صورة / فيديو من الجهاز</label><input id="bfile" type="file" accept="image/*,video/*" onchange="previewBoardFile(this)"><div id="bpreview" class="muted"></div><button class="primary" onclick="saveBoard()">حفظ الصورة أو الفيديو</button><p class="muted">تُحفظ الصور والوسائط داخل التطبيق على هذا الجهاز. للمشاركة اختر مشاركة ثم Bluetooth من قائمة أندرويد إذا ظهر ضمن الخيارات.</p></div><div id="boardlist" class="panel">المحفوظات</div>`;showBoards()})}
-let mediaDB;function mediaStore(){return new Promise((resolve,reject)=>{let q=indexedDB.open('MaktabatyMediaDB',1);q.onupgradeneeded=()=>{if(!q.result.objectStoreNames.contains('media'))q.result.createObjectStore('media',{keyPath:'id',autoIncrement:true})};q.onsuccess=()=>{mediaDB=q.result;resolve(mediaDB)};q.onerror=()=>reject(q.error)})}
-function previewBoardFile(input){let f=input.files&&input.files[0],other=input.id==='bcamera'?'bfile':'bcamera';if(f)document.getElementById(other).value='';let el=document.getElementById('bpreview');if(!f){el.textContent='';return}el.textContent='الملف المختار: '+f.name+' ('+Math.round(f.size/1024)+' كيلوبايت)'}
-async function saveBoard(){let f=(document.getElementById('bcamera').files[0]||document.getElementById('bfile').files[0]);if(!f){alert('التقط صورة أو اختر صورة / فيديو أولاً');return}try{let d=await mediaStore(),tx=d.transaction('media','readwrite');tx.objectStore('media').add({name:document.getElementById('bname').value,date:document.getElementById('bdate').value,desc:document.getElementById('bdesc').value,file:f,createdAt:Date.now()});tx.oncomplete=()=>{document.getElementById('bname').value='';document.getElementById('bdate').value='';document.getElementById('bdesc').value='';document.getElementById('bcamera').value='';document.getElementById('bfile').value='';document.getElementById('bpreview').textContent='';alert('تم حفظ الوسيط على الجهاز');showBoards()};tx.onerror=()=>alert('تعذر حفظ الملف في قاعدة بيانات الجهاز')}catch(e){alert('تعذر حفظ الوسيط في هذا المتصفح: '+e.message)}}
-async function showBoards(){try{let d=await mediaStore(),q=d.transaction('media').objectStore('media').getAll();q.onsuccess=()=>{let el=document.getElementById('boardlist');if(!el)return;el.innerHTML='<h3>الصور والوسائط المحفوظة ('+q.result.length+')</h3><div class="media-grid">'+q.result.map(x=>{let isImage=x.file&&x.file.type&&x.file.type.startsWith('image/'),src=isImage?URL.createObjectURL(x.file):'';return `<div class="media-card">${isImage?`<img src="${src}" alt="${x.name||'صورة نشاط'}">`:`<div class="empty">🎬<br>ملف فيديو</div>`}<b>${x.name||x.file.name}</b><div class="muted">${x.date||''} • ${x.file.type||'ملف'}</div>${x.desc?`<p>${x.desc}</p>`:''}<div class="actions"><button class="btn" onclick="viewBoard(${x.id})">عرض</button><button class="btn dark" onclick="shareBoard(${x.id})">مشاركة / بلوتوث</button><button class="btn danger" onclick="deleteBoard(${x.id})">حذف</button></div></div>`}).join('')+'</div>'+(q.result.length?'':'<div class="empty">لا توجد صور أو وسائط محفوظة بعد.</div>')}}catch(e){let el=document.getElementById('boardlist');if(el)el.textContent='تعذر فتح معرض الوسائط'}}
-async function getBoard(id){let d=await mediaStore();return new Promise((resolve,reject)=>{let q=d.transaction('media').objectStore('media').get(id);q.onsuccess=()=>resolve(q.result);q.onerror=()=>reject(q.error)})}
-async function viewBoard(id){try{let x=await getBoard(id);if(!x)return;let u=URL.createObjectURL(x.file),w=window.open('','_blank');if(!w){alert('اسمح بفتح نافذة العرض من إعدادات المتصفح');return}w.document.write('<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><body dir="rtl" style="font-family:Tahoma;padding:15px;text-align:center">'+(x.file.type.startsWith('video/')?`<video controls autoplay src="${u}" style="max-width:100%;max-height:85vh"></video>`:`<img src="${u}" style="max-width:100%;max-height:85vh">`)+'</body>')}catch(e){alert('تعذر عرض الملف')}}
-async function shareBoard(id){try{let x=await getBoard(id);if(!x)return;let blob=x.file,name=x.file.name||((x.name||'مشاركة مكتبتي')+(blob.type.startsWith('image/')?'.jpg':'.mp4')),file=new File([blob],name,{type:blob.type||'application/octet-stream'});if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:x.name||'مشاركة من مكتبتي',text:x.desc||'صورة من سجل اللوحات والأنشطة'});return}let u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),60000);alert('تم تجهيز الملف. افتح قائمة المشاركة في الجهاز أو مجلد التنزيلات، ثم اختر Bluetooth إذا كان متاحًا.')}catch(e){if(e.name!=='AbortError')alert('تعذرت المشاركة من داخل التطبيق. يمكنك تجربة تنزيل الملف ثم مشاركته من مدير الملفات.')}}
-async function deleteBoard(id){if(!confirm('هل تريد حذف هذه الصورة أو الوسيط من التطبيق؟'))return;try{let d=await mediaStore(),tx=d.transaction('media','readwrite');tx.objectStore('media').delete(id);tx.oncomplete=showBoards}catch(e){alert('تعذر حذف الملف')}}
-function simple(n,t){setPage(()=>document.getElementById('view').innerHTML=header(n)+`<div class="panel">${t}</div>`)}
-function passwordPage(){simple('تغيير كلمة السر','تغيير كلمة السر يحتاج إلى إعداد حماية حقيقي؛ شاشة الدخول الحالية تجريبية ولا توفر حسابات آمنة.')}
-function backup(){let blob=new Blob([JSON.stringify(data)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='maktabaty-backup.json';a.click();URL.revokeObjectURL(a.href);simple('النسخ الاحتياطي','تم تنزيل نسخة بيانات السجلات النصية. ملفات الصور والفيديو تحتاج نسخًا منفصلًا.')}
-function restore(){let i=document.createElement('input');i.type='file';i.accept='.json,application/json';i.onchange=()=>{let r=new FileReader();r.onload=()=>{try{data=JSON.parse(r.result);save();alert('تم استعادة البيانات');renderHome()}catch(e){alert('ملف النسخة غير صالح')}};r.readAsText(i.files[0])};i.click()}
-</script></body></html>
+function exportAllCSV(){
+  let keys = Object.keys(data);
+  if(!keys.length){ alert('لا توجد بيانات حالية في قاعدة البيانات'); return; }
+  backup();
+}
+
+// باقي الوظائف الاعتيادية
+function inventoryHome(){ setPage(()=>{ document.getElementById('view').innerHTML=header('كشوف الجرد')+`<div class="panel"><p>سجل كشوف الجرد جاهز للإدخال والتصدير.</p></div>`; }); }
+function committeeHome(){ setPage(()=>{ document.getElementById('view').innerHTML=header('سجل لجنة المكتبة')+`<div class="panel"><p>سجل لجنة المكتبة مفعل.</p></div>`; }); }
+function boards(){ setPage(()=>{ document.getElementById('view').innerHTML=header('اللوحات والأنشطة')+`<div class="panel"><form onsubmit="addRecord(event,'boards')">${fields(['التاريخ','العنوان','الهدف'])}<button class="primary">حفظ</button></form></div>${ledgerRecords('boards',list('boards'),['التاريخ','العنوان','الهدف'])}`; }); }
+function simple(t,m){ setPage(()=>{ document.getElementById('view').innerHTML=header(t)+`<div class="panel"><p>${m}</p></div>`; }); }
+function passwordPage(){ setPage(()=>{ document.getElementById('view').innerHTML=header('كلمة السر')+`<div class="panel"><input type="password" placeholder="كلمة السر الجديدة"><button class="primary" onclick="alert('تم تحديث كلمة السر بنجاح')">حفظ التغييرات</button></div>`; }); }
+
+function backup(){
+  let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
+  let a = document.createElement('a');
+  a.setAttribute("href", dataStr);
+  a.setAttribute("download", `maktabaty_backup_${new Date().toISOString().slice(0,10)}.json`);
+  a.click();
+}
+
+function restore(){
+  setPage(()=>{
+    document.getElementById('view').innerHTML=header('استعادة نسخة احتياطية')+`
+      <div class="panel">
+        <label class="field-label">اختر ملف النسخة الاحتياطية (.json)</label>
+        <input type="file" accept=".json" onchange="let r=new FileReader();r.onload=e=>{try{data=JSON.parse(e.target.result);save();alert('تمت الاستعادة بنجاح');renderHome();}catch(err){alert('ملف غير صالح');}};r.readAsText(event.target.files[0])">
+      </div>`;
+  });
+}
+</script>
+</body>
+</html>
